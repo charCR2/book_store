@@ -1,14 +1,14 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux'
 import {
-    Title,
+    header,
     Wrapper} from "./style";
 
 class index extends Component{
     render(){
         return(
             <Fragment>
-                <Title />
+                <header></header>
                 <Wrapper />
             </Fragment>
         )
