@@ -28,7 +28,9 @@ export const GrobalStyle = createGlobalStyle `
     }
     body {
         line-height: 1;
+        
     }
+    #root{background:#f9f9f9}
     ol, ul {
         list-style: none;
     }
