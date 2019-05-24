@@ -11,6 +11,7 @@ import {
     FourFoldItem,
     ImgRotate,
     BestSeller,
+    Scoller,
     } from "./style";
 
 class index extends Component{
@@ -84,6 +85,7 @@ class index extends Component{
                         <p>畅销榜</p>
                         <p>更多></p>
                     </div>
+                    <div className='scroll'>2222222222222222222222222222222222222222222222222222222222222222</div>
                 </BestSeller>
             </Fragment>
         )
