@@ -9,12 +9,11 @@ import {GrobalStyle} from './reset'
 /* eslint-disable */
 ReactDOM.render(
     <Fragment>
-        <GrobalStyle>
+        <GrobalStyle />
             <Provider store={store}>
                 <Index />
             </Provider>
-        </GrobalStyle>
-    </Fragment>
-    ,
+      
+    </Fragment>,
     document.getElementById('root')
 )

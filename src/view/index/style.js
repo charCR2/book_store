@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-export const header = styled.div`
+export const Header = styled.div`
   height: 2rem  
   font-size: 1.5em;
   text-align: center;

@@ -1,14 +1,18 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux'
 import {
-    header,
+    Header,
     Wrapper} from "./style";
 
 class index extends Component{
+    constructor(props){
+        super(props)
+    }
+
     render(){
         return(
             <Fragment>
-                <header></header>
+                <Header>{this.props.index.plah}</Header>
                 <Wrapper />
             </Fragment>
         )
@@ -21,4 +25,4 @@ const mapDispatchToPrpos = (state) => ({
 
 });
 
-export default connect(mapStateToPrpos,mapDispatchToPrpos())(index)
+export default connect(mapStateToPrpos,mapDispatchToPrpos)(index)
