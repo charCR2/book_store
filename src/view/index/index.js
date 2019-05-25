@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux'
-import { Carousel, WingBlank } from 'antd-mobile';
-
+import { Carousel } from 'antd-mobile';
+import BestSellerTtem from '../../component/bestSellerTtem'
 import {
     SearchInputBox,
     SearchInput,
@@ -20,7 +20,10 @@ class index extends Component{
         super(props);
         this.state = {
             data: ['1', '2', '3'],
+            datas: [
+                {name:'科普科技'},  {name:'综合'},  {name:'文学小说'},{name:'经管励志'},{name:'儿童馆'},{name:'6'}],
             imgHeight: 176,
+            bestSellerTtemIndex:0
         }
     }
 
@@ -35,9 +38,7 @@ class index extends Component{
                         style={{borderRadius:'5px',boxShadow:' 0px 25px 10px -20px #ddd',overflow:'hidden',height:"2rem"}}
                         autoplay={true}
                         dots={false}
-                        infinite
-                        beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                        afterChange={index => console.log('slide to', index)}>
+                        infinite>
                         {this.state.data.map(val => (
                             <a
                                 key={val}
@@ -56,7 +57,7 @@ class index extends Component{
                             {this.props.iconBox.map(val=>{
                                const url=require(`../../../static/${val.name}.png`);
                                return (
-                                   <IconBox className='flex-xy'>
+                                   <IconBox className='flex-xy' key={val.name}>
                                        <img src={url}/>
                                        <p>{val.title}</p>
                                    </IconBox>)
@@ -67,7 +68,7 @@ class index extends Component{
                         {this.props.fourFold.map(val=>{
                             const url=require(`../../../static/fourFold/${val.imgName}.png`);
                             return (
-                                <FourFoldItem className={`flexc-cen-x ${val.className}`}>
+                                <FourFoldItem className={`flexc-cen-x ${val.className}`} key={val.imgName}>
                                     <div className='infoBox'>
                                         <p>{val.title}</p>
                                         <p>{val.tip}</p>
@@ -85,7 +86,14 @@ class index extends Component{
                         <p>畅销榜</p>
                         <p>更多></p>
                     </div>
-                    <div className='scroll'>2222222222222222222222222222222222222222222222222222222222222222</div>
+                    <BestSellerTtem
+                    index={this.state.bestSellerTtemIndex}
+                    scrollList={this.state.datas}
+                    scrollCallBack={this.setBestSellerTtemIndex.bind(this)}
+                    >
+
+                    </BestSellerTtem>
+                   
                 </BestSeller>
             </Fragment>
         )
@@ -99,14 +107,21 @@ class index extends Component{
             });
         }, 100);
     }
+
+    setBestSellerTtemIndex(obj,index){
+        console.log('father',index)
+        this.setState({
+            bestSellerTtemIndex : index
+        })
+    }
 }
-const mapStateToPrpos = (state) => ({
+const mapState = (state) => ({
     plah : state.index.plah,
     iconBox : state.index.iconBox,
     fourFold : state.index.fourFold
 });
-const mapDispatchToPrpos = (state) => ({
+const mapDispatch = (state) => ({
 
 });
 
-export default connect(mapStateToPrpos,mapDispatchToPrpos)(index)
+export default connect(mapState,mapDispatch)(index)

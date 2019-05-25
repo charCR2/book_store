@@ -5,6 +5,7 @@ import './plugin/flex.css'
 import 'antd/dist/antd.css';
 import { Provider} from 'react-redux'
 import store from './store'
+import { BrowserRouter,Route } from "react-router-dom";
 import {GrobalStyle} from './reset'
 
 

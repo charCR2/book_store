@@ -59,8 +59,4 @@ export const BestSeller =styled.div`
     .title{height:0.8rem;padding:0 0.3rem}
     .title p:nth-child(1){font-size:0.3rem;color:#000;font-weight:bold;margin:0}
     .title p:nth-child(2){font-size:0.23rem;color:#999;margin:0}
-    .scroll{ width:100%;height:0.8rem;overflow-x: scroll;}
-    
-    
 `;
-
