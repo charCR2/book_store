@@ -1,7 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux'
 import { Carousel } from 'antd-mobile';
-import BestSellerTtem from '../../component/bestSellerTtem'
+import  ScrollNav  from '../../component/scrollNav/scrollNav'
+import  ListItem  from '../../component/listItem/listItem'
 import {
     SearchInputBox,
     SearchInput,
@@ -11,9 +12,9 @@ import {
     FourFoldItem,
     ImgRotate,
     BestSeller,
-    Scoller,
     } from "./style";
-
+import util from '../../api/util'
+import {getRankCategory} from '../../api/api'
 class index extends Component{
 
     constructor(props){
@@ -21,9 +22,10 @@ class index extends Component{
         this.state = {
             data: ['1', '2', '3'],
             datas: [
-                {name:'科普科技'},  {name:'综合'},  {name:'文学小说'},{name:'经管励志'},{name:'儿童馆'},{name:'6'}],
+                {name:'科普科技'},  {name:'综合'},  {name:'文学小说'},{name:'经管励志'},{name:'儿童馆'},{name:'即将到来'}],
             imgHeight: 176,
-            bestSellerTtemIndex:0
+            bestSellerTtemIndex:0,
+            book_list:[]
         }
     }
 
@@ -86,14 +88,22 @@ class index extends Component{
                         <p>畅销榜</p>
                         <p>更多></p>
                     </div>
-                    <BestSellerTtem
+                    <ScrollNav
                     index={this.state.bestSellerTtemIndex}
                     scrollList={this.state.datas}
-                    scrollCallBack={this.setBestSellerTtemIndex.bind(this)}
+                    scrollCallBack={this.setScrollNavIndex.bind(this)}
                     >
+                    </ScrollNav>
 
-                    </BestSellerTtem>
-                   
+                    <div className="listRow">
+                        {this.state.book_list.map(item=>{
+
+                            return(
+                            <ListItem key={item.name} url={util.staticPath+item.cover}>
+                            </ListItem>
+                            )}
+                        )}
+                    </div>
                 </BestSeller>
             </Fragment>
         )
@@ -106,13 +116,31 @@ class index extends Component{
                 data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
             });
         }, 100);
+        getRankCategory().then(res=>{
+            console.log(res);
+            let maleid = res.data.male[this.randomnum(res.data.male)]._id;
+            this.setState({
+                book_list:res.data.female
+            })
+        })
+
+    }
+    randomnum(arr){
+        return parseInt((Math.random()*(arr.length - 1)));
     }
 
-    setBestSellerTtemIndex(obj,index){
-        console.log('father',index)
-        this.setState({
-            bestSellerTtemIndex : index
+    getbooklist(id){
+
+        getRank(id).then(res=>{
+            let books=res.data.ranking.books.slice(0,10);
+            books.forEach((book)=>{
+                book.cover=util.staticPath+book.cover;
+
+            })
         })
+    }
+    setScrollNavIndex(obj,index){
+        console.log('father',index,obj);
     }
 }
 const mapState = (state) => ({

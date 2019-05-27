@@ -2,6 +2,7 @@
   "name": "dzdp",
   "version": "0.1.0",
   "private": true,
+  "proxy":"http://api.zhuishushenqi.com",
   "dependencies": {
     "antd": "^3.18.1",
     "antd-mobile": "^2.2.13",

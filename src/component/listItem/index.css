@@ -1,0 +1,21 @@
+.listItemBox{
+    width: 50%;
+    height: 3rem;
+    padding: 0.2rem;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.listItemBox .imgBox{
+    width: 50%;
+    height: 2rem;
+    overflow: hidden;
+}
+
+.imgBox img{
+    width: 100%
+}
+.tipsBox{
+    height: 1rem;
+}
